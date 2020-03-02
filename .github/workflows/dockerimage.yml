@@ -14,4 +14,4 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
     - name: Publish Docker
-    - uses: elgohr/Publish-Docker-Github-Action@2.12
+      uses: elgohr/Publish-Docker-Github-Action@2.12
