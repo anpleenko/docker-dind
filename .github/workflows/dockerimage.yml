@@ -1,21 +1,31 @@
-name: Docker Image CI
+# name: Docker Image CI
+# on: [push]
+# jobs:
+#     build:
+#         runs-on: ubuntu-latest
+#         name: Build image job
+#         steps:
+#             - name: Checkout master
+#               uses: actions/checkout@master
+#             - name: Build and publish image
+#               uses: zmingxie/docker_buildx@master
+#               with:
+#                 publish: true
+#                 imageName: anpleenko/test:docker-dind
+#                 dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
+#                 dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
 
+
+name: Publish Docker
 on: [push]
-
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        name: Build image job
-        steps:
-            - name: Checkout master
-              uses: actions/checkout@master
-            - name: Build and publish image
-              uses: zmingxie/docker_buildx@master
-              with:
-                publish: true
-                imageName: anpleenko/test:docker-dind
-                dockerHubUser: ${{ secrets.DOCKER_USERNAME }}
-                dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
-
-
-          
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: HurricanKai/Publish-Docker-Github-Action@master
+      with:
+        name: anpleenko/test:docker-dind
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
