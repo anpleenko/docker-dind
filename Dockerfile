@@ -2,8 +2,9 @@ FROM docker:19.03.6-dind
 
 RUN mkdir -p ~/.docker/cli-plugins
 
-ADD https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64 ~/.docker/cli-plugins/
-RUN mv ~/.docker/cli-plugins/buildx-v0.3.1.linux-amd64 ~/.docker/cli-plugins/docker-buildx
+ADD https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64 /
+
+RUN mv /buildx-v0.3.1.linux-amd64 ~/.docker/cli-plugins/docker-buildx
 RUN chmod a+x ~/.docker/cli-plugins/docker-buildx
 
 # Register Arm executables
